@@ -16,7 +16,11 @@ const path = require("path");
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 database.connectDB();
-app.use(cors());
+
+app.use(cors({
+	origin:true
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());

@@ -24,7 +24,7 @@ const Sidebar = ({ sidebarToggle }) => {
     );
 
     const adminLinks = sidebarLinks.filter(link =>
-        ["Admin", "Book Authors", "Category"].includes(link.name)
+        ["Admin", "Book Authors", "Category", "Books"].includes(link.name)
     );
 
     const filteredLinks = Role === 'Admin' ? adminLinks : authorLinks;

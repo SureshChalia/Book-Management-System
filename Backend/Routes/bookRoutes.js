@@ -8,7 +8,9 @@ router.post('/add-book',auth, bookController.addBook);
 router.get('/allbook-of-author',auth, bookController.getAllBooksOfAuthor);
 router.get('/get-book',auth, bookController.getBooksWithId);
 router.get('/search-book',auth, bookController.searchBookOfAuthor);
-router.get('book-of-category', auth, bookController.getBooksWithCategory);
+router.get('/book-search',auth, bookController.searchBook);
+router.get('/book-of-category', auth, bookController.getBooksWithCategory);
+router.get('/all-books', auth, bookController.getAllBooks);
 router.delete('/delete-book', auth, bookController.deleteBook);
 router.put('/update-book', auth, bookController.updateBook);
 

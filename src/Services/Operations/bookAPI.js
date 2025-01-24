@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import { apiConnector } from "../ApiConnector";
 import { bookEndpoints } from "../Apis";
 
-const { ADD_Book_API, BOOK_OF_AUTHOR_API, BOOK_OF_CATEGORY_API, DELETE_BOOK_API, UPDATE_BOOK_API, SEARCH_BOOK_API, GET_BOOK_API } = bookEndpoints;
+const { ADD_Book_API, BOOK_OF_AUTHOR_API, BOOK_OF_CATEGORY_API, DELETE_BOOK_API, UPDATE_BOOK_API, SEARCH_BOOK_API, GET_BOOK_API, ALL_BOOKS_API , ADMIN_SEARCH_BOOK_API} = bookEndpoints;
 
 export const addBook = async (books, token) => {
     try {
@@ -29,6 +29,18 @@ export const getBookOfAuthor = async (token) => {
     }
 };
 
+export const getAllBooks = async (token) => {
+    try {
+        const response = await apiConnector("GET", ALL_BOOKS_API, null, {
+            Authorization: `Bearer ${token}`,
+        });
+        return response.data;
+    } catch (error) {
+        toast.error("Failed to fetch all books");
+        throw error;
+    }
+};
+
 export const searchBook = async (token, bookName) => {
     try {
         const response = await apiConnector("GET", SEARCH_BOOK_API, null, {
@@ -40,6 +52,19 @@ export const searchBook = async (token, bookName) => {
         throw error;
     }
 };
+
+export const adminSearchBook = async (token, bookName) => {
+    try {
+        const response = await apiConnector("GET", ADMIN_SEARCH_BOOK_API, null, {
+            Authorization: `Bearer ${token}`,
+        }, { bookName });
+        return response.data;
+    } catch (error) {
+        toast.error("Failed to search a book ");
+        throw error;
+    }
+};
+
 
 export const getBookOfCategory = async (categoryId, token) => {
     try {

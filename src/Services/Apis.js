@@ -32,7 +32,9 @@ export const bookEndpoints = {
   DELETE_BOOK_API : BASE_URL + "/delete-book",
   UPDATE_BOOK_API: BASE_URL + "/update-book",
   SEARCH_BOOK_API : BASE_URL + "/search-book",
-  GET_BOOK_API : BASE_URL + "/get-book"
+  ADMIN_SEARCH_BOOK_API : BASE_URL + "/book-search",
+  GET_BOOK_API : BASE_URL + "/get-book",
+  ALL_BOOKS_API: BASE_URL + "/all-books"
 }
 
 

@@ -42,5 +42,12 @@ export const sidebarLinks = [
     name: "All Books",
     path:"all-books",
     icon: <SiBookstack/>
-  },  
+  }, 
+  {
+    id: 7,
+    name: "Books",
+    path:"books",
+    icon: <SiBookstack/>
+  }, 
+   
 ];

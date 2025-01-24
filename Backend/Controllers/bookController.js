@@ -9,7 +9,6 @@ exports.addBook = async (req, res) => {
         const parsedBody = qs.parse(req.body);
         const books = Object.values(parsedBody.books || {});
 
-        console.log("Parsed Books Data:", books);
         const bookImages = Array.isArray(req.files?.bookImage)
             ? req.files.bookImage
             : req.files?.bookImage
@@ -142,34 +141,6 @@ exports.deleteBook = async (req, res) => {
     }
 };
 
-// exports.updateBook = async (req, res) => {
-//     try {
-//         const { bookId } = req.query;
-//         const authorId = req.user.id;
-//         const { bookName, price, category, description } = req.body;
-
-//         const book = await Book.findOne({ _id: bookId, author: authorId });
-
-//         if (!book) {
-//             return res.status(404).json({ message: "Book not found" });
-//         }
-
-//         book.bookName = bookName || book.bookName;
-//         book.price = price || book.price;
-//         book.category = category || book.category;
-//         book.description = description || book.description;
-
-//         await book.save();
-
-//         res.status(200).json({
-//             message: "Book updated successfully",
-//             data: book,
-//         });
-//     } catch (error) {
-//         console.error("Error updating book:", error);
-//         res.status(500).json({ message: "Internal server error" });
-//     }
-// };
 
 
 exports.updateBook = async (req, res) => {
@@ -217,5 +188,36 @@ exports.updateBook = async (req, res) => {
     } catch (error) {
         console.error("Error updating book:", error);
         res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+exports.getAllBooks = async (req, res) => {
+    try {
+        const books = await Book.find().populate('category').populate('author');
+        res.status(200).json({ success: true, message: 'All book fetched successfull', data: books });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Failed to fetch all book' });
+    }
+};
+
+exports.searchBook = async (req, res) => {
+    try {
+        const { bookName } = req.query;
+
+        const books = await Book.find({ bookName: new RegExp(bookName, 'i') }).populate('category');
+
+        res.status(200).json({
+            success: true,
+            message: books.length > 0 ? 'Books found' : 'No books found with the given criteria',
+            data: books
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to search books',
+            error: error.message
+        });
     }
 };

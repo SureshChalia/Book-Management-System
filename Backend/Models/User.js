@@ -26,9 +26,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["Active", "Not Active"],
     default: "Active",
-    required:false
-  },
-
+    required: false
+  }
 },
 );
 

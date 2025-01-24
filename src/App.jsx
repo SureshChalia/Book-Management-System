@@ -12,6 +12,7 @@ import Homepage from './components/HomePage';
 import UnAuthorizedPage from "./components/UnAuthorizedPage"
 import AuthorHome from './components/AuthorPages/AuthorHome';
 import AdminHome from './components/AdminHome';
+import AllBooksPage from './components/Auth/AllBooksPage';
 
 function App() {
   return (
@@ -47,6 +48,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="books"
+          element={
+            <ProtectedRoute requiredRoles={['Admin']}>
+              <AllBooksPage/>
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="book-categories"
           element={

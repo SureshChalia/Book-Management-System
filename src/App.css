@@ -1,0 +1,11 @@
+
+.sidebarScroll::-webkit-scrollbar{
+  width: 2px;
+  background-color: rgb(28, 25, 25);
+  border-radius: 8px; 
+}
+.sidebarScroll::-webkit-scrollbar-thumb{
+  background-color: white;
+  border: 1px solid rgb(168, 168, 176);
+  border-radius: 8px;
+}
